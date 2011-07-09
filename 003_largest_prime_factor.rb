@@ -5,35 +5,25 @@ class Processor
   end
 
   def generate_prime_factors(number)
-    sequence = generate_prime_numbers(number)
-
-    result = Array.new
-
-    sequence.each do |i|
-      result.push i if number % i == 0
-    end
-
-    result
-  end
-
-  def generate_prime_numbers(max)
     sequence = Array.new
 
-    #should only need to check up to half way to number
-    (2...max/2).each do |number|
+    #using sieve of eratosthenes
+    current = 2
 
-      prime = true
-      (2...number).each do |i|
-        if number % i == 0
-          prime = false
-          break
-        end
+    while current < number
+
+      if number % current == 0
+        number=number/current
+        sequence.push(current)
+      else
+        current += 1
       end
-
-      sequence.push number if prime
-      p number if prime
-
     end
+
+    if number % current == 0
+      sequence.push(number)
+    end
+
     sequence
   end
 
@@ -42,4 +32,4 @@ end
 
 processor = Processor.new
 
-p processor.largest_prime_factor(600851475143)
+#p processor.generate_prime_factors(600851475143)
