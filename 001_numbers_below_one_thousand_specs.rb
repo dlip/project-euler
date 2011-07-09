@@ -8,10 +8,28 @@ require './001_numbers_below_one_thousand'
 
 describe Processor do
   describe "#sum" do
-    it "returns the correct result" do
+    it "returns the correct answer" do
       processor = Processor.new
       processor.sum.should == 233168
     end
   end
+
+  describe "#multiple_of_3_or_5?" do
+    it "returns false if given 0" do
+      processor = Processor.new
+      processor.multiple_of_3_or_5?(0).should == false
+    end
+
+    it "returns true if given 3" do
+      processor = Processor.new
+      processor.multiple_of_3_or_5?(3).should == true
+    end
+
+    it "returns true if given 5" do
+      processor = Processor.new
+      processor.multiple_of_3_or_5?(5).should == true
+    end
+  end
+
 end
 
